@@ -84,16 +84,16 @@ function apiCall(method, path, params, cb) {
   });
 }
 
-function getObjects(cb)                     { apiCall("get", "/objects", {}, cb); }
-function getTables(cb)                      { apiCall("get", "/tables", {}, cb); }
-function getTableRows(table, opts, cb)      { apiCall("get", "/tables/" + table + "/rows", opts, cb); }
-function getTableStructure(table, opts, cb) { apiCall("get", "/tables/" + table, opts, cb); }
-function getTableIndexes(table, cb)         { apiCall("get", "/tables/" + table + "/indexes", {}, cb); }
-function getTableConstraints(table, cb)     { apiCall("get", "/tables/" + table + "/constraints", {}, cb); }
-function getHistory(cb)                     { apiCall("get", "/history", {}, cb); }
-function getBookmarks(cb)                   { apiCall("get", "/bookmarks", {}, cb); }
-function executeQuery(query, cb)            { apiCall("post", "/query", { query: query }, cb); }
-function explainQuery(query, cb)            { apiCall("post", "/explain", { query: query }, cb); }
+function getObjects(cb)                     { apiCall("GET", "/objects", {}, cb); }
+function getTables(cb)                      { apiCall("GET", "/tables", {}, cb); }
+function getTableRows(table, opts, cb)      { apiCall("GET", "/tables/" + table + "/rows", opts, cb); }
+function getTableStructure(table, opts, cb) { apiCall("GET", "/tables/" + table, opts, cb); }
+function getTableIndexes(table, cb)         { apiCall("GET", "/tables/" + table + "/indexes", {}, cb); }
+function getTableConstraints(table, cb)     { apiCall("GET", "/tables/" + table + "/constraints", {}, cb); }
+function getHistory(cb)                     { apiCall("GET", "/history", {}, cb); }
+function getBookmarks(cb)                   { apiCall("GET", "/bookmarks", {}, cb); }
+function executeQuery(query, cb)            { apiCall("POST", "/query", { query: query }, cb); }
+function explainQuery(query, cb)            { apiCall("POST", "/explain", { query: query }, cb); }
 
 function encodeQuery(query) {
   return window.btoa(query);
@@ -208,10 +208,11 @@ function performTableAction(table, action, el) {
       });
       break;
     case "export":
+      var urlRoot = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
       var format = el.data("format");
       var filename = table + "." + format;
       var query = window.encodeURI("SELECT * FROM " + table);
-      var url = "http://" + window.location.host + "/api/query?format=" + format + "&filename=" + filename + "&query=" + query;
+      var url = urlRoot + "/api/query?format=" + format + "&filename=" + filename + "&query=" + query;
       var win  = window.open(url, "_blank");
       win.focus();
       break;
