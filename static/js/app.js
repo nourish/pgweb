@@ -543,7 +543,8 @@ function exportTo(format) {
     return;
   }
 
-  var url = "http://" + window.location.host + "/api/query?format=" + format + "&query=" + encodeQuery(query);
+  var urlRoot = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
+  var url = urlRoot + "api/query?format=" + format + "&query=" + encodeQuery(query);
   var win = window.open(url, '_blank');
 
   setCurrentTab("table_query");
