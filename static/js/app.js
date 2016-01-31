@@ -64,7 +64,7 @@ function apiCall(method, path, params, cb) {
 
   $.ajax({
     timeout: timeout,
-    url: urlRoot + "/api" + path,
+    url: urlRoot + "api" + path,
     method: method,
     cache: false,
     data: params,
@@ -212,7 +212,7 @@ function performTableAction(table, action, el) {
       var format = el.data("format");
       var filename = table + "." + format;
       var query = window.encodeURI("SELECT * FROM " + table);
-      var url = urlRoot + "/api/query?format=" + format + "&filename=" + filename + "&query=" + query;
+      var url = urlRoot + "api/query?format=" + format + "&filename=" + filename + "&query=" + query;
       var win  = window.open(url, "_blank");
       win.focus();
       break;
