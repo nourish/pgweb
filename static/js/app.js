@@ -60,7 +60,7 @@ function getPagesCount(rowsCount) {
 
 function apiCall(method, path, params, cb) {
   var timeout = 300000; // 5 mins is enough
-  var urlRoot = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
+  var urlRoot = window.location.protocol + "//" + window.location.host + window.location.pathname;
 
   $.ajax({
     timeout: timeout,
